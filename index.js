@@ -9,8 +9,9 @@ app.use(express.static("public/css/"));
 const homeRoute = require("./routes/homeRoute");
 const authRoute = require("./routes/authRoute");
 const db = require("./model");
+const cookieParser = require("cookie-parser");
 app.use(express.urlencoded({extended: true}));
-
+app.use(cookieParser());
 app.use("",authRoute);
 app.use("",homeRoute);
 
