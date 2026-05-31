@@ -2,6 +2,7 @@ const { where } = require("sequelize");
 const db = require("../model");
 const  {users} = db;
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 exports.getRegister = (req,res)=>{
     res.render("auth/register");
 }
@@ -50,12 +51,21 @@ exports.postLogin = async(req,res)=>{
             }
         });
         if(!userExist){
-            return res.status(500).send("User is not registered");
+            return res.status(404).send("User is not registered");
         }
         const isMatched = bcrypt.compareSync(password,userExist.password);
         if(!isMatched){
-            return res.status(400).send("Incorrect Password");
+
+            return res.status(401).send("Incorrect Password");
         }
+        const token = jwt.sign({id: userExist.id},process.env.JWTSECRET,{
+                expiresIn: "1d"
+            });
+            res.cookie("token",token, {
+                httpOnly: true,
+                maxAge: 24 * 60  * 60 * 1000
+            });
+            console.log(token);
         res.redirect("/blogs");
     }catch(error){
         console.log(error);
