@@ -5,7 +5,9 @@ app.use(express.static('public/css/'));
 app.set('view engine','ejs');
 app.use(express.static("public/css/"));
 const homeRoute = require("./routes/homeRoute");
+const authRoute = require("./routes/authRoute");
 
+app.use("",authRoute);
 app.use("",homeRoute);
 
 
