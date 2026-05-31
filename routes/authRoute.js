@@ -1,9 +1,9 @@
-const { getRegister, getLogin } = require("../controller/authController");
+const { getRegister, getLogin, postRegister } = require("../controller/authController");
 
 const router = require("express").Router();
 
 
-router.route("/register").get(getRegister);
+router.route("/register").get(getRegister).post(postRegister);
 router.route("/login").get(getLogin);
 
 

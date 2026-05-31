@@ -9,6 +9,7 @@ app.use(express.static("public/css/"));
 const homeRoute = require("./routes/homeRoute");
 const authRoute = require("./routes/authRoute");
 const db = require("./model");
+app.use(express.urlencoded({extended: true}));
 
 app.use("",authRoute);
 app.use("",homeRoute);
