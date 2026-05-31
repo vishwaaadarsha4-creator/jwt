@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const db = require("../model");
 const  {users} = db;
 const bcrypt = require("bcrypt");
@@ -31,6 +32,31 @@ exports.postRegister = async(req,res)=>{
         password: bcrypt.hashSync(password,10),
     });
     res.redirect("login");
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Server Error");
+    }
+}
+
+exports.postLogin = async(req,res)=>{
+    try{
+        const {email, password} = req.body;
+        if(!email || !password){
+            return res.status(400).json("Both email and passord are required");
+        }
+        const userExist = await users.findOne({
+            where : {
+                email: email
+            }
+        });
+        if(!userExist){
+            return res.status(500).send("User is not registered");
+        }
+        const isMatched = bcrypt.compareSync(password,userExist.password);
+        if(!isMatched){
+            return res.status(400).send("Incorrect Password");
+        }
+        res.redirect("/blogs");
     }catch(error){
         console.log(error);
         res.status(500).send("Server Error");
