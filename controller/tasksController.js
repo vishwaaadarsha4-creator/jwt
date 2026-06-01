@@ -1,7 +1,37 @@
+const db = require("../model");
+
+const {tasks} = db;
 exports.getAllTasks = (req,res)=>{
     res.render("allTaks");
 }
 
 exports.getCreateTask = (req,res)=>{
     res.render("createTask");
+}
+
+exports.postCreateTask = async(req,res)=>{
+    try{
+        const {title, description, status} = req.body;
+
+        if(!title || !description || !status){
+            return res.status(400).send("All fields are required");
+        }
+        const task = await db.tasks.findOne({
+            where : {
+                title : title,
+            }
+        });
+        if(task){
+            return res.status(400).send("Task with this title already exists");
+        }
+        await tasks.create({
+            title,
+            description,
+            status,
+        });
+        res.status(200).send("New Task Added");
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Server Error");
+    }
 }
