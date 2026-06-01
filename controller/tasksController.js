@@ -37,4 +37,17 @@ exports.postCreateTask = async(req,res)=>{
     }
 }
 
-exports.deleteTask = 
+exports.deleteTask = async(req,res)=>{
+    try{
+        const id = req.params.id;
+        await tasks.destroy({
+            where : {
+                id: id
+            }
+        });
+        res.redirect("/alltasks");
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Server Error");
+    }
+}
