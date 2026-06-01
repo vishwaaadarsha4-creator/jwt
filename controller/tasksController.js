@@ -1,8 +1,9 @@
 const db = require("../model");
 
 const {tasks} = db;
-exports.getAllTasks = (req,res)=>{
-    res.render("allTaks");
+exports.getAllTasks = async(req,res)=>{
+    const data = await tasks.findAll();
+    res.render("allTaks",{task: data});
 }
 
 exports.getCreateTask = (req,res)=>{
@@ -29,9 +30,11 @@ exports.postCreateTask = async(req,res)=>{
             description,
             status,
         });
-        res.status(200).send("New Task Added");
+        res.redirect("/alltasks")
     }catch(error){
         console.log(error);
         res.status(500).send("Server Error");
     }
 }
+
+exports.deleteTask = 

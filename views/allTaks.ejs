@@ -16,42 +16,22 @@
         </div>
 
         <div class="task-container">
+            <% task.forEach((data)=>{ %>
+                            <div class="task-card">
+                <h2><%= data.title %></h2>
+                <p><%= data.description %></p>
 
-            <div class="task-card">
-                <h2>Complete Node.js Assignment</h2>
-                <p>Finish CRUD operations and submit the project.</p>
-
-                <span class="status pending">Pending</span>
-
-                <div class="actions">
-                    <a href="#" class="edit">Edit</a>
-                    <a href="#" class="delete">Delete</a>
-                </div>
-            </div>
-
-            <div class="task-card">
-                <h2>Study Database</h2>
-                <p>Practice Sequelize associations and queries.</p>
-
-                <span class="status completed">Completed</span>
+                <span class="status pending"><%= data.status %></span>
 
                 <div class="actions">
                     <a href="#" class="edit">Edit</a>
                     <a href="#" class="delete">Delete</a>
                 </div>
             </div>
+           <% }); %>
 
-            <div class="task-card">
-                <h2>Prepare Presentation</h2>
-                <p>Create slides for project demonstration.</p>
 
-                <span class="status pending">Pending</span>
 
-                <div class="actions">
-                    <a href="#" class="edit">Edit</a>
-                    <a href="#" class="delete">Delete</a>
-                </div>
-            </div>
 
         </div>
 
