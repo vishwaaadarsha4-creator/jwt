@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+    <link rel="stylesheet" href="/createTask.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="form-card">
+            <h1>Edit Your Task</h1>
+
+            <form action="/edittas/<% task.id %>" method="POST">
+
+                <div class="input-group">
+                    <label><Task Title></label>
+                    <input
+                        type="text"
+                        name="title"
+                        required
+                        value="<%= task.title %>"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label>Description</label>
+                    <textarea
+                        name="description"
+                        rows="5"
+                        
+                    ><%= task.description %></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>Status</label>
+                    <select name="status">
+                        <option value="" >Select</option>
+                        <option value="Pending" <%= task.status ==="Pending"?"selected":"" %>>Pending</option>
+                        <option value="Completed" <%= task.status ==="Completed"?"selected":"" %>>Completed</option>
+                    </select>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="create-btn">
+                        Create Task
+                    </button>
+
+                    <a href="/" class="cancel-btn">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

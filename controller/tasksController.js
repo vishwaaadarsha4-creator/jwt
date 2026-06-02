@@ -51,3 +51,9 @@ exports.deleteTask = async(req,res)=>{
         res.status(500).send("Server Error");
     }
 }
+
+exports.getEditTask = async(req,res)=>{
+    const id = req.params.id;
+    const tasks = await db.tasks.findByPk(id);
+    res.render("editTask",{task: tasks});
+}
