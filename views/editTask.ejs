@@ -13,7 +13,7 @@
         <div class="form-card">
             <h1>Edit Your Task</h1>
 
-            <form action="/edittas/<% task.id %>" method="POST">
+            <form action="/edittask/<%= task.id %>" method="POST">
 
                 <div class="input-group">
                     <label><Task Title></label>
@@ -45,7 +45,7 @@
 
                 <div class="buttons">
                     <button type="submit" class="create-btn">
-                        Create Task
+                        Update
                     </button>
 
                     <a href="/" class="cancel-btn">

@@ -57,3 +57,28 @@ exports.getEditTask = async(req,res)=>{
     const tasks = await db.tasks.findByPk(id);
     res.render("editTask",{task: tasks});
 }
+
+exports.postEditTask = async(req,res)=>{
+    try{
+        
+    const id = req.params.id;
+    const {title, description, status} = req.body
+    if(!title || !description || !status){
+        return res.send("Oh OO you miss some fields");
+    }
+    await tasks.update({
+        title,
+        description,
+        status
+    },{
+        where : {
+            id: id,
+        }
+    });
+    res.redirect("/alltasks");
+
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Unable to update your task, Server Error");
+    }
+}
