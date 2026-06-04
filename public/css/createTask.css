@@ -22,8 +22,9 @@ body{
 .form-card{
     background:white;
     padding:40px;
-    border-radius:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    border-radius:20px;
+    border-top:5px solid #4f46e5;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 .form-card h1{
@@ -62,6 +63,7 @@ body{
 .input-group textarea:focus,
 .input-group select:focus{
     border-color:#4f46e5;
+    box-shadow:0 0 0 3px rgba(79,70,229,0.15);
 }
 
 .buttons{
@@ -96,4 +98,60 @@ body{
 
 .cancel-btn:hover{
     background:#bb2d3b;
+}
+/* Tablet */
+@media (max-width: 768px){
+
+    .form-card{
+        padding:30px;
+    }
+
+    .form-card h1{
+        font-size:2rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px){
+
+    body{
+        padding:15px;
+        align-items:flex-start;
+    }
+
+    .container{
+        margin-top:20px;
+    }
+
+    .form-card{
+        padding:20px;
+        border-radius:12px;
+    }
+
+    .form-card h1{
+        font-size:1.7rem;
+        text-align:center;
+    }
+
+    .form-card p{
+        text-align:center;
+        font-size:0.95rem;
+    }
+
+    .input-group input,
+    .input-group textarea,
+    .input-group select{
+        font-size:15px;
+        padding:10px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .create-btn,
+    .cancel-btn{
+        width:100%;
+        text-align:center;
+    }
 }
