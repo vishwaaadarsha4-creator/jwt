@@ -16,7 +16,6 @@ exports.isAuthenticated = async(req,res,next)=>{
             id : decryptedResult.id,
         }
     });
-    console.log(userExists);
     if(!userExists){
         res.send("user with that token doesn't exist")
     }else{

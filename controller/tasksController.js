@@ -2,7 +2,12 @@ const db = require("../model");
 
 const {tasks} = db;
 exports.getAllTasks = async(req,res)=>{
-    const data = await tasks.findAll();
+   
+    const data = await tasks.findAll({
+        where : {
+            userId: req.id,
+        }
+    });
     res.render("allTaks",{task: data});
 }
 
