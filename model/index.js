@@ -23,8 +23,14 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.users = userModel(sequelize,DataTypes);
 db.tasks = taskModel(sequelize,DataTypes);
+
+
+db.users.hasMany(db.tasks);
+db.tasks.belongsTo(db.users);
 sequelize.sync({force: false}).then(()=>{
     console.log("Synced Done");
 });
+
+
 
 module.exports = db;

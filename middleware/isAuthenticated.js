@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 const {promisify} = require("util");
 const { users } = require("../model");
 exports.isAuthenticated = async(req,res,next)=>{
-    const token = req.cookies.token;
+    try{
+        const token = req.cookies.token;
     //CHECK TOKEN GIVEN OR NOT
     if(!token){
         return res.redirect("/login");
@@ -15,6 +16,7 @@ exports.isAuthenticated = async(req,res,next)=>{
             id : decryptedResult.id,
         }
     });
+    console.log(userExists);
     if(!userExists){
         res.send("user with that token doesn't exist")
     }else{
@@ -22,5 +24,8 @@ exports.isAuthenticated = async(req,res,next)=>{
         next();
     }
 
+    }catch(error){
+        return res.redirect("/login");
+    }
 
 }

@@ -13,7 +13,7 @@ exports.getCreateTask = (req,res)=>{
 exports.postCreateTask = async(req,res)=>{
     try{
         const {title, description, status} = req.body;
-
+        
         if(!title || !description || !status){
             return res.status(400).send("All fields are required");
         }
@@ -29,6 +29,7 @@ exports.postCreateTask = async(req,res)=>{
             title,
             description,
             status,
+            userId: req.id,
         });
         res.redirect("/alltasks")
     }catch(error){

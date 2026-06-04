@@ -51,7 +51,8 @@ exports.postLogin = async(req,res)=>{
             }
         });
         if(!userExist){
-            return res.status(404).send("User is not registered");
+            // return res.status(404).send("User is not registered");
+            return res.status(404).redirect("/register");
         }
         const isMatched = bcrypt.compareSync(password,userExist.password);
         if(!isMatched){
@@ -66,7 +67,7 @@ exports.postLogin = async(req,res)=>{
                 maxAge: 24 * 60  * 60 * 1000
             });
             console.log(token);
-        res.redirect("/blogs");
+        res.redirect("/");
     }catch(error){
         console.log(error);
         res.status(500).send("Server Error");
