@@ -10,7 +10,7 @@
             display:flex;
             justify-content:center;
             align-items:center;
-            height:100vh;
+            min-height:100vh;
             background:#f4f4f4;
         }
 
@@ -68,3 +68,64 @@
             text-decoration:none;
             color:#007bff;
         }
+/* -------------------- */
+/* RESPONSIVE DESIGN */
+/* -------------------- */
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .input-group input {
+        padding: 9px;
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    body {
+        align-items: flex-start;
+        padding: 20px 10px;
+        height: auto;
+    }
+
+    .container {
+        width: 100%;
+        padding: 18px;
+        border-radius: 8px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .input-group label {
+        font-size: 0.9rem;
+    }
+
+    .input-group input {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+
+    .btn {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+
+    .login-link {
+        font-size: 0.9rem;
+    }
+}

@@ -73,3 +73,69 @@ body{
 .card a:hover{
     background:#372fc9;
 }
+/* -------------------- */
+/* RESPONSIVE DESIGN */
+/* -------------------- */
+
+@media (max-width: 768px) {
+    .container h1 {
+        font-size: 2.2rem;
+    }
+
+    .container p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card h2 {
+        font-size: 1.3rem;
+    }
+
+    .card p {
+        font-size: 0.95rem;
+    }
+
+    .card a {
+        padding: 10px 18px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Small mobile phones */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container h1 {
+        font-size: 1.8rem;
+    }
+
+    .container p {
+        font-size: 0.95rem;
+    }
+
+    .cards {
+        grid-template-columns: 1fr; /* FORCE SINGLE COLUMN */
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .card a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
