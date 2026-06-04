@@ -14,6 +14,12 @@ const db = require("./model");
 const cookieParser = require("cookie-parser");
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+
+app.use((req,res,next)=>{
+    res.locals.currentUser = req.cookies.token;
+    next();
+})
+
 app.use("",authRoute);
 app.use("",homeRoute);
 app.use("",getStartedRoute);
