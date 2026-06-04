@@ -56,6 +56,7 @@ body{
 
 .task-card:hover{
     transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(79,70,229,0.15);
 }
 
 .task-card h2{
@@ -106,4 +107,69 @@ body{
 
 .delete{
     background:#dc3545;
+}
+/* Tablet */
+@media (max-width: 768px){
+
+    body{
+        padding:20px;
+    }
+
+    .header{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+    .header h1{
+        font-size:2rem;
+    }
+
+    .add-btn{
+        width:100%;
+        max-width:250px;
+        text-align:center;
+    }
+
+    .task-container{
+        grid-template-columns:1fr;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 480px){
+
+    body{
+        padding:15px;
+    }
+
+    .header h1{
+        font-size:1.8rem;
+    }
+
+    .task-card{
+        padding:20px;
+    }
+
+    .task-card h2{
+        font-size:1.3rem;
+    }
+
+    .task-card p{
+        font-size:0.95rem;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .actions a{
+        width:100%;
+        text-align:center;
+    }
+
+    .add-btn{
+        width:100%;
+    }
 }
