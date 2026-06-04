@@ -1,5 +1,5 @@
 const dbConfig = {
-    dbname : process.env.DBNAME,
+    dbname : "jwt",
     user: process.env.DBUSER,
     password: process.env.DBPASSWORD,
     host: process.env.DBHOST,
