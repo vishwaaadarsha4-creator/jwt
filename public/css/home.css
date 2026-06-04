@@ -48,6 +48,7 @@ nav h2{
 }
 
 .content{
+    width: 100%;
     max-width:700px;
 }
 
@@ -93,4 +94,83 @@ nav h2{
 .secondary:hover{
     background:white;
     color:#4f46e5;
+}
+/* Tablets */
+@media (max-width: 768px) {
+
+    nav{
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    nav h2{
+        font-size: 1.8rem;
+    }
+
+    .nav-links{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .content h1{
+        font-size: 2.5rem;
+    }
+
+    .content p{
+        font-size: 1rem;
+    }
+}
+
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+
+    nav{
+        padding: 15px;
+    }
+
+    nav h2{
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .nav-links{
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links a{
+        font-size: 0.9rem;
+    }
+
+    .hero{
+        height: auto;
+        min-height: 80vh;
+        padding: 40px 20px;
+    }
+
+    .content h1{
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .content p{
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .buttons{
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .btn{
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
 }
