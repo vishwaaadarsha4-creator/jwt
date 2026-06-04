@@ -73,3 +73,9 @@ exports.postLogin = async(req,res)=>{
         res.status(500).send("Server Error");
     }
 }
+
+exports.Logout = (req,res)=>{
+    res.clearCookie("token");
+    res.redirect("/login");
+    
+}

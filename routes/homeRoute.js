@@ -3,7 +3,7 @@ const { isAuthenticated } = require("../middleware/isAuthenticated");
 
 const router = require("express").Router();
 
-router.route("/").get(isAuthenticated, home);
+router.route("/").get(home);
 
 
 module.exports = router;
