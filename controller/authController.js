@@ -79,3 +79,7 @@ exports.Logout = (req,res)=>{
     res.redirect("/login");
     
 }
+
+exports.forgotPassword = (req,res)=>{
+    res.render("auth/forgotPassword");
+}
