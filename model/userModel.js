@@ -19,7 +19,13 @@ const userModel = (sequelize,DataTaypes)=>{
         password: {
             type: DataTaypes.STRING,
             allowNull: false,
-        }
+        },
+        otp: {
+            type: DataTaypes.STRING,
+        },
+        otpExpiry: {
+            type: DataTaypes.DATE,
+        },
     });
     return User;
 }

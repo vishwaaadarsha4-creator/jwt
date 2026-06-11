@@ -3,6 +3,7 @@ const db = require("../model");
 const  {users} = db;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const sendEmail = require("../services/sendEmail");
 exports.getRegister = (req,res)=>{
     res.render("auth/register");
 }
@@ -82,4 +83,32 @@ exports.Logout = (req,res)=>{
 
 exports.forgotPassword = (req,res)=>{
     res.render("auth/forgotPassword");
+}
+
+exports.sendOtp = async(req,res)=>{
+    try{
+        const {email} = req.body;
+        if(!email){
+            return res.send("Kindly provide your registered email");
+        }
+        const existedUser = await users.findOne({
+            where : {
+                email : email,
+            }
+        });
+        if(!existedUser){
+            res.status(400).send("No account found with this email");
+        }else{
+            sendEmail({
+                email : email,
+                subject : "Forgot Password OTP",
+                otp : Math.floor(100000 + Math.random() * 900000),
+            })
+            res.send("Email sent successfully");
+        }
+  
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Server Error");
+    }
 }
