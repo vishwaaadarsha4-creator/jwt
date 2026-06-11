@@ -104,11 +104,16 @@ exports.sendOtp = async(req,res)=>{
                 subject : "Forgot Password OTP",
                 otp : Math.floor(100000 + Math.random() * 900000),
             })
-            res.send("Email sent successfully");
+            // res.send("Email sent successfully");
+            res.redirect("/verifyOtp");
         }
   
     }catch(error){
         console.log(error);
         res.status(500).send("Server Error");
     }
+}
+
+exports.otpVerification = (req,res)=>{
+    res.render("auth/verifyOtp");
 }
