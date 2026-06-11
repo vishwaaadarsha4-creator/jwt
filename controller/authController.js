@@ -96,15 +96,20 @@ exports.sendOtp = async(req,res)=>{
                 email : email,
             }
         });
+        const Otp = Math.floor(100000 + Math.random() * 900000)
         if(!existedUser){
             res.status(400).send("No account found with this email");
         }else{
-            sendEmail({
+            await sendEmail({
                 email : email,
                 subject : "Forgot Password OTP",
-                otp : Math.floor(100000 + Math.random() * 900000),
+                otp : Otp,
             })
             // res.send("Email sent successfully");
+            existedUser.otp = Otp;
+            existedUser.otpGeneratedTime = Date.now();
+            
+            await existedUser.save();
             res.redirect("/verifyOtp");
         }
   

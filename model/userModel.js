@@ -23,7 +23,7 @@ const userModel = (sequelize,DataTaypes)=>{
         otp: {
             type: DataTaypes.STRING,
         },
-        otpExpiry: {
+        otpGeneratedTime: {
             type: DataTaypes.DATE,
         },
     });
