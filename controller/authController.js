@@ -110,7 +110,7 @@ exports.sendOtp = async(req,res)=>{
             existedUser.otpGeneratedTime = Date.now();
             
             await existedUser.save();
-            res.redirect("/verifyOtp");
+            res.redirect("/verifyOtp?email=" + email);
         }
   
     }catch(error){
@@ -120,5 +120,38 @@ exports.sendOtp = async(req,res)=>{
 }
 
 exports.otpVerification = (req,res)=>{
-    res.render("auth/verifyOtp");
+    const email = req.query.email;
+    res.render("auth/verifyOtp", {email: email});
+}
+exports.handleOtp = async(req,res)=>{
+    try{
+        const otp = req.body.otp;
+        const email = req.params.id;
+        if(!otp || !email){
+            return res.send("Please provide email and otp");
+        }
+        const user = await users.findOne({
+            where : {
+                email: email,
+                otp : otp,
+            }
+        });
+        if(user){
+            const currentTime = Date.now();
+            const expiryTime = user.otpGeneratedTime;
+            if(currentTime - expiryTime >= 2 * 60 *1000){
+               return res.send("Your OTP has expired");
+            }
+                user.otp = null;
+                user.otpGeneratedTime = null;
+                await user.save();
+                return res.send("OTP Verified");
+            
+        }
+           return res.send("Invalid OTP");
+        
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Server Error");
+    }
 }
