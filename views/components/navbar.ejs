@@ -1,8 +1,11 @@
  <header>
         <nav>
             <h2>Task Manager</h2>
+                <div class="hamburger" id="hamburger">
+                     &#9776;
+                </div>
             <% if(currentUser){ %>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="/">Home</a>
                 <a href="/alltasks">Tasks</a>
                 <a href="/createtask">CreateTask</a>
@@ -10,7 +13,7 @@
                 <a href="/logout">LogOut</a>
             </div>
             <% }else{ %>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="/">Home</a>
                 <a href="/alltasks">Tasks</a>
                 <a href="/login" class="login-btn">Login</a>
@@ -21,3 +24,16 @@
 
         </nav>
     </header>
+<script>
+    console.log("Script Loaded");
+
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("navLinks");
+
+console.log(hamburger);
+console.log(navLinks);
+
+hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
+</script>
