@@ -145,7 +145,8 @@ exports.handleOtp = async(req,res)=>{
                 user.otp = null;
                 user.otpGeneratedTime = null;
                 await user.save();
-                return res.send("OTP Verified");
+                // return res.send("OTP Verified");
+                return res.redirect("/changePassword");
             
         }
            return res.send("Invalid OTP");
@@ -154,4 +155,7 @@ exports.handleOtp = async(req,res)=>{
         console.log(error);
         res.status(500).send("Server Error");
     }
+}
+exports.getChangePassword = (req,res)=>{
+    res.render("auth/passwordChange");
 }
