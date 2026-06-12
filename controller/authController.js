@@ -108,6 +108,7 @@ exports.sendOtp = async(req,res)=>{
             // res.send("Email sent successfully");
             existedUser.otp = Otp;
             existedUser.otpGeneratedTime = Date.now();
+            existedUser.isOtpVerified = false;
             
             await existedUser.save();
             res.redirect("/verifyOtp?email=" + email);
@@ -144,9 +145,11 @@ exports.handleOtp = async(req,res)=>{
             }
                 user.otp = null;
                 user.otpGeneratedTime = null;
+                user.isOtpVerified = true;
+                console.log(email);
                 await user.save();
                 // return res.send("OTP Verified");
-                return res.redirect("/changePassword");
+                return res.redirect("/changePassword?email=" + email);
             
         }
            return res.send("Invalid OTP");
@@ -157,5 +160,41 @@ exports.handleOtp = async(req,res)=>{
     }
 }
 exports.getChangePassword = (req,res)=>{
-    res.render("auth/passwordChange");
+    const email = req.query.email;
+    res.render("auth/passwordChange",{email: email});
+}
+
+exports.handleChangePassword = async(req,res)=>{
+    try{
+        const email = req.body.email;
+        const {password, confirmPassword} = req.body;
+        if(!email || !password || !confirmPassword){
+            return res.send("email, password and confirmPassword are required");
+        }
+        if(password !== confirmPassword){
+            return res.send("Password and confirm Password is not match");
+        }
+        const user = await users.findOne({
+            where : {
+                email : email,
+            }
+        });
+        if(!user.isOtpVerified){
+            return res.send("Please verify OTP first");
+        }
+        user.password = bcrypt.hashSync(password,8);
+        await user.save();
+        // await users.update({
+        //     password: bcrypt.hashSync(password,8),
+        // },{
+        //     where : {
+        //         email : email
+        //     }
+        // });
+
+        return res.redirect("/login");
+    }catch(error){
+        console.log("error");
+        res.send("Server Error");
+    }
 }

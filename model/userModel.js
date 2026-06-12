@@ -26,6 +26,10 @@ const userModel = (sequelize,DataTaypes)=>{
         otpGeneratedTime: {
             type: DataTaypes.DATE,
         },
+        isOtpVerified: {
+            type: DataTaypes.BOOLEAN,
+            defaultValue: false,
+        },
     });
     return User;
 }
